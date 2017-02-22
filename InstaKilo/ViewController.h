@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageViewController.h"
 
 @interface ViewController : UIViewController
+
+@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 
 
 @end
