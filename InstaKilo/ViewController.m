@@ -103,6 +103,7 @@
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         HeaderCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
+        headerView.backgroundColor = [UIColor redColor];
         //headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%ld", (long)indexPath.section];
 //        headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%@", self.groupBySubject.allKeys];
 //        headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%@", self.groupByLocation.allKeys];
