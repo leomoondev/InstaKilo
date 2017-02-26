@@ -10,13 +10,17 @@
 
 @implementation ImageViewController
 
-+ (instancetype)galleryItemWithDictionary:(NSDictionary *)dictionary
-{
-    ImageViewController *item = [[ImageViewController alloc] init];
+- (instancetype)initWithImageName: (NSString *) imageName initWithSubject : (NSString *) imageSubject initWithLocation : (NSString *) imageLocation {
     
-    item.itemImage = dictionary[@"itemImage"];
+    if (self = [super init]) {
+        
+        _imageName = imageName;
+        _imageSubject = imageSubject;
+        _imageLocation = imageLocation;
+    }
+    return self;
     
-    return item;
+    
 }
 
 @end

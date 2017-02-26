@@ -8,10 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "ImageViewController.h"
+#import "ImageViewControllerCollectionViewCell.h"
+#import "HeaderCollectionReusableView.h"
 
 @interface ViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+//@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
+@property NSMutableArray *storeImages;
+
+@property NSDictionary *groupByLocation;
+@property NSDictionary *groupBySubject;
+
+@property NSArray *storeLocationKeys;
+@property NSArray *storeSubjectKeys;
+
+@property NSArray *storeKeys;
+@property NSDictionary *storeDataDictionary;
 
 
 @end

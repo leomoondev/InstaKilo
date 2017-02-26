@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface ImageViewController : NSObject
 
-@property (nonatomic, strong) NSString *itemImage;
+@property NSString* imageName;
+@property NSString* imageSubject;
+@property NSString* imageLocation;
 
-+ (instancetype)galleryItemWithDictionary:(NSDictionary *)dictionary;
+- (instancetype)initWithImageName: (NSString *) imageName initWithSubject : (NSString *) imageSubject initWithLocation : (NSString *) imageLocation;
 
 @end

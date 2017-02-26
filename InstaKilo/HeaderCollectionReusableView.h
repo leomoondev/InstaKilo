@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HeaderCollectionReusableView : UICollectionReusableView
+@property (strong, nonatomic) IBOutlet UILabel *headerCollectionReusableViewHeader;
 
 @end
