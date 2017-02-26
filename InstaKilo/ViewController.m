@@ -17,16 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-  // [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"myCell"];
-    
-//    [self.collectionView registerClass:[ImageViewControllerCollectionViewCell class] forCellWithReuseIdentifier:@"myCell"];
-
     
     [self initGalleryItems];
     [self.collectionView reloadData];
-    
-
 }
 
 
@@ -35,21 +28,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)initGalleryItems
-{
+- (void)initGalleryItems {
+    
     self.storeImages = [[NSMutableArray alloc] init];
 
     self.groupByLocation = [[NSMutableDictionary alloc] init];
     self.groupBySubject = [[NSMutableDictionary alloc] init];
-    
-   // [self.collectionView registerClass:[ImageViewControllerCollectionViewCell class] forCellWithReuseIdentifier:@"myCell"];
     
     self.storeImages = [[NSMutableArray alloc] init];
     self.groupBySubject = [[NSMutableDictionary alloc] init];
     self.groupByLocation = [[NSMutableDictionary alloc] init];
     self.storeSubjectKeys = [[NSArray alloc] init];
     self.storeLocationKeys = [[NSArray alloc] init];
-
     
     ImageViewController *image1 = [[ImageViewController alloc] initWithImageName:@"1.jpg" initWithSubject:@"Movie" initWithLocation:@"Vancouver"];
     ImageViewController *image2 = [[ImageViewController alloc] initWithImageName:@"2.jpg" initWithSubject:@"Science" initWithLocation:@"Toronto"];
@@ -92,25 +82,16 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    //return [self.storeImages count];
-    NSString *key = self.storeKeys[section];
-    NSArray *items = self.storeDataDictionary[key];
-    return items.count;
+    NSArray *tempStoreImages = self.storeDataDictionary[self.storeKeys[section]];
+    return tempStoreImages.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"myCell" forIndexPath:indexPath];
-//
-//    UILabel *label = (UILabel*)[cell viewWithTag:100];
-//    label.text = [NSString stringWithFormat:@"%ld/%ld", (long)indexPath.section, (long)indexPath.item];
-//    
-//    return cell;
     ImageViewControllerCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"myCell" forIndexPath:indexPath];
     NSArray *tempStoreKeyArray = self.storeDataDictionary[self.storeKeys[indexPath.section]];
     ImageViewController *imageVC = tempStoreKeyArray[indexPath.item];
-//    UIImage *tempImage = self.storeImages[indexPath.row];
-//    cell.createImageView.image = tempImage;
+
     
     
     NSString *tempImageName = imageVC.imageName;
@@ -123,8 +104,11 @@
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         HeaderCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
         //headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%ld", (long)indexPath.section];
-        headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%@", self.groupBySubject.allKeys];
-        headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%@", self.groupByLocation.allKeys];
+//        headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%@", self.groupBySubject.allKeys];
+//        headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%@", self.groupByLocation.allKeys];
+//        
+        headerView.headerCollectionReusableViewHeader.text = self.storeKeys[indexPath.section];
+        
 
         return headerView;
     }
@@ -137,21 +121,4 @@
 }
 
 
-
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UIAlertController *controller = [UIAlertController alertControllerWithTitle: @"didSelectItemAtIndexPath:"
-//                                                                        message: [NSString stringWithFormat: @"Indexpath = %@", indexPath]
-//                                                                 preferredStyle: UIAlertControllerStyleAlert];
-//    
-//    UIAlertAction *alertAction = [UIAlertAction actionWithTitle: @"Dismiss"
-//                                                          style: UIAlertActionStyleDestructive
-//                                                        handler: nil];
-//    
-//    [controller addAction: alertAction];
-//    
-//    [self presentViewController: controller animated: YES completion: nil];
-
-
-//}
 @end
