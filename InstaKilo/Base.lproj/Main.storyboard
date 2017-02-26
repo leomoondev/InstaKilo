@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -62,7 +63,7 @@
                                             <rect key="frame" x="8" y="18" width="359" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -75,18 +76,34 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="sxj-a5-soL"/>
                                 </connections>
                             </collectionView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="71b-oj-FyV">
+                                <rect key="frame" x="112" y="82" width="150" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentController:" destination="BYZ-38-t0r" eventType="valueChanged" id="mIn-4L-VgT"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="juo-ek-RN6" secondAttribute="trailing" id="2xQ-e1-9FL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="71b-oj-FyV" secondAttribute="trailing" constant="97" id="7P5-8p-feL"/>
                             <constraint firstItem="juo-ek-RN6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KkK-35-pge"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="juo-ek-RN6" secondAttribute="bottom" id="bBZ-uA-FfR"/>
+                            <constraint firstItem="71b-oj-FyV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="96" id="etL-4D-eCv"/>
                             <constraint firstItem="juo-ek-RN6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="rtw-NU-b5p"/>
+                            <constraint firstItem="71b-oj-FyV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="18" id="zc3-tk-Adu"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="u8p-yE-mkz"/>
+                    <navigationItem key="navigationItem" id="u8p-yE-mkz">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="juo-ek-RN6" id="50c-Er-HZj"/>
+                        <outlet property="segmentControllerLabel" destination="71b-oj-FyV" id="gsh-jo-a0I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

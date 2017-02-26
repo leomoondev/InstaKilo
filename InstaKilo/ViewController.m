@@ -9,7 +9,9 @@
 #import "ViewController.h"
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentControllerLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+- (IBAction)segmentController:(id)sender;
 
 @end
 
@@ -19,9 +21,10 @@
     [super viewDidLoad];
     
     [self initGalleryItems];
-    [self.collectionView reloadData];
+    self.collectionView.backgroundColor = [UIColor greenColor];
+    [self.segmentControllerLabel setTitle:@"Subject" forSegmentAtIndex:0];
+    [self.segmentControllerLabel setTitle:@"Location" forSegmentAtIndex:1];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -66,19 +69,16 @@
                              @"Travel":@[image3, image4, image5, image7]
     };
   
-    //save all keys to keys arrays
     self.storeLocationKeys = [[self.groupByLocation allKeys]sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     self.storeSubjectKeys = [[self.groupBySubject allKeys]sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     
    
     
-    //default current data
     self.storeKeys = self.storeSubjectKeys;
     self.storeDataDictionary = self.groupBySubject;
     
 
 }
-
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
@@ -92,25 +92,21 @@
     NSArray *tempStoreKeyArray = self.storeDataDictionary[self.storeKeys[indexPath.section]];
     ImageViewController *imageVC = tempStoreKeyArray[indexPath.item];
 
-    
-    
     NSString *tempImageName = imageVC.imageName;
     UIImage *tempImage = [UIImage imageNamed:tempImageName];
     cell.createImageView.image = tempImage;
     return cell;
 }
+
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         HeaderCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"headerView" forIndexPath:indexPath];
-        headerView.backgroundColor = [UIColor redColor];
-        //headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%ld", (long)indexPath.section];
-//        headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%@", self.groupBySubject.allKeys];
-//        headerView.headerCollectionReusableViewHeader.text = [NSString stringWithFormat:@"%@", self.groupByLocation.allKeys];
-//        
+        headerView.backgroundColor = [UIColor purpleColor];
+                
         headerView.headerCollectionReusableViewHeader.text = self.storeKeys[indexPath.section];
         
-
+        
         return headerView;
     }
     return nil;
@@ -121,5 +117,18 @@
     return self.storeKeys.count;
 }
 
+- (IBAction)segmentController:(UISegmentedControl *)sender {
+    
+    if (sender.selectedSegmentIndex == 0) {
 
+        self.storeKeys = self.storeSubjectKeys;
+        self.storeDataDictionary = self.groupBySubject;
+    }
+    else {
+        self.storeKeys = self.storeLocationKeys;
+        self.storeDataDictionary = self.groupByLocation;
+        
+    }
+    [self.collectionView reloadData];
+}
 @end

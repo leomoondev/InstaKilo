@@ -13,7 +13,6 @@
 
 @interface ViewController : UIViewController
 
-//@property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property NSMutableArray *storeImages;
 
 @property NSDictionary *groupByLocation;
